@@ -1,13 +1,14 @@
 import json
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-from Utils import to_int
-from InvalidProfileError import InvalidProfileError
-from PsnProfiles.Profile import Profile
-from PsnProfiles.ProfileSummary import ProfileSummary
-from PsnProfiles.Trophy import Trophy
-from PsnProfiles.Milestone import Milestone
-from PsnProfiles.Game import Game
+
+from src.Utils import to_int
+from src.InvalidProfileError import InvalidProfileError
+from src.PsnProfiles.Profile import Profile
+from src.PsnProfiles.ProfileSummary import ProfileSummary
+from src.PsnProfiles.Trophy import Trophy
+from src.PsnProfiles.Milestone import Milestone
+from src.PsnProfiles.Game import Game
 
 
 class PsnScraper:

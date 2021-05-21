@@ -1,5 +1,5 @@
 import json
-from PsnProfiles.ProfileSummary import ProfileSummary
+from src.PsnProfiles.ProfileSummary import ProfileSummary
 
 
 class Profile:

@@ -1,5 +1,5 @@
 # Python PSNProfiles scraper
-Scrape PSNProfiles pages using a command-line interface/terminal
+Scrape PSNProfiles pages using a Python CLI script
 
 ## Usage
 
@@ -56,7 +56,7 @@ Install Python3 then in a terminal:
       "rarity_percentage": "94.29%",
       "rarity_label": "Common",
       "grade": "bronze"
-    },
+    }
   ],
   "milestones": [
     {
@@ -82,7 +82,7 @@ Install Python3 then in a terminal:
       "game": "Red Bow",
       "description": "2,000th Trophy",
       "date": "8 months ago"
-    },
+    }
   ],
   "games": [
     {

@@ -1,0 +1,2 @@
+class InvalidProfileError(Exception):
+    pass

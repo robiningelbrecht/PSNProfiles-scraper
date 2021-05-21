@@ -1,5 +1,11 @@
+import sys
+from InvalidProfileError import InvalidProfileError
 from PsnScraper import PsnScraper
 
-scraper = PsnScraper("MyPsnName")
+psn_username = input("Enter PSN username:")
+scraper = PsnScraper(psn_username)
 
-print(scraper.get_profile().to_json())
+try:
+    print(scraper.get_profile().to_json())
+except InvalidProfileError:
+    print("\"" + psn_username + "\" is not a valid psn profile", file=sys.stderr)

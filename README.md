@@ -1,4 +1,4 @@
-# PSNProfiles scraper
+# Python PSNProfiles scraper
 Scrape PSNProfiles pages using a command-line interface/terminal
 
 ## Usage

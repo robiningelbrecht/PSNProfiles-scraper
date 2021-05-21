@@ -112,7 +112,7 @@ Install Python3 then in a terminal:
       "platform": "PS4",
       "ranked": "S",
       "has_earned_platinum": true
-     },
+     }
   ]
 }
 ```

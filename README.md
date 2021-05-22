@@ -12,7 +12,7 @@ Install Python3 then in a terminal:
 
 ```json
 {
-  "name": "Your-UserName",
+  "name": "YourUserName",
   "summary": {
     "level": 354,
     "trophies": {

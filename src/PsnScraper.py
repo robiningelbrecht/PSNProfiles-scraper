@@ -40,7 +40,7 @@ class PsnScraper:
             raise InvalidProfileError(self.psn_name + " is not a valid psn profile")
 
         return Profile(self.psn_name, self.get_profile_summary(), self.get_recent_trophies(), self.get_milestones(),
-                       self.get_games())
+                       self.get_games(), self.get_trophy_cabinet())
 
     # Scrapes and returns the profile summary.
     def get_profile_summary(self) -> ProfileSummary:
@@ -115,6 +115,25 @@ class PsnScraper:
             ))
 
         return recent_trophies
+
+    # Scrapes and returns trophy cabinet
+    def get_trophy_cabinet(self) -> list:
+        if not self.parser.find("h3", text="Trophy Cabinet"):
+            return []
+
+        trophy_cabinet = self.parser.select('table.box.zebra')[0]
+        trophies = []
+
+        for trophy in trophy_cabinet.find_all("tr"):
+            trophies.append(Trophy(
+                trophy.find("a", class_="small-title").text if trophy.find("a", class_="small-title") else "",
+                trophy.find("a", rel="nofollow").text if trophy.find("a", rel="nofollow") else "",
+                trophy.select('span.typo-top')[0].text if trophy.select('span.typo-top') else "",
+                trophy.select('span.typo-bottom')[0].text if trophy.select('span.typo-bottom') else "",
+                trophy.select('span.separator.left img')[0]["alt"] if trophy.select('span.separator.left img') else ""
+            ))
+
+        return trophies
 
     # Scrapes and returns milestones.
     def get_milestones(self) -> list:

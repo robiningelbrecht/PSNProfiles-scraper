@@ -3,12 +3,13 @@ from src.PsnProfiles.ProfileSummary import ProfileSummary
 
 
 class Profile:
-    def __init__(self, name: str, summary: ProfileSummary, recent_trophies: list, milestones: list, games: list):
+    def __init__(self, name: str, summary: ProfileSummary, recent_trophies: list, milestones: list, games: list, trophy_cabinet: list):
         self.name = name
         self.summary = summary
         self.recent_trophies = recent_trophies
         self.milestones = milestones
         self.games = games
+        self.trophy_cabinet = trophy_cabinet
 
     def get_name(self) -> str:
         return self.name
@@ -24,6 +25,9 @@ class Profile:
 
     def get_games(self) -> list:
         return self.games
+
+    def get_trophy_cabinet(self) -> list:
+        return self.trophy_cabinet
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,

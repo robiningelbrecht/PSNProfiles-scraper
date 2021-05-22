@@ -113,7 +113,23 @@ Install Python3 then in a terminal:
       "ranked": "S",
       "has_earned_platinum": true
      }
-  ]
+  ],
+    "trophy_cabinet": [
+    {
+      "title": "Be Yourself",
+      "game": "Marvel's Spider-Man: Miles Morales",
+      "rarity_percentage": "56.11%",
+      "rarity_label": "Common",
+      "grade": "platinum"
+    },
+    {
+      "title": "Viking Legend",
+      "game": "Assassin's Creed Valhalla",
+      "rarity_percentage": "15.91%",
+      "rarity_label": "Rare",
+      "grade": "platinum"
+    }
+  ]    
 }
 ```
 

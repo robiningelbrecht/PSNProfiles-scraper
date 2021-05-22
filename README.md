@@ -48,14 +48,16 @@ Install Python3 then in a terminal:
       "game": "Concrete Genie",
       "rarity_percentage": "90.93%",
       "rarity_label": "Common",
-      "grade": "bronze"
+      "grade": "bronze",
+      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     },
     {
       "title": "Path of the Stars",
       "game": "Shadow of the Tomb Raider",
       "rarity_percentage": "94.29%",
       "rarity_label": "Common",
-      "grade": "bronze"
+      "grade": "bronze",
+      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     }
   ],
   "milestones": [
@@ -120,14 +122,16 @@ Install Python3 then in a terminal:
       "game": "Marvel's Spider-Man: Miles Morales",
       "rarity_percentage": "56.11%",
       "rarity_label": "Common",
-      "grade": "platinum"
+      "grade": "platinum",
+      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     },
     {
       "title": "Viking Legend",
       "game": "Assassin's Creed Valhalla",
       "rarity_percentage": "15.91%",
       "rarity_label": "Rare",
-      "grade": "platinum"
+      "grade": "platinum",
+      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     }
   ]    
 }

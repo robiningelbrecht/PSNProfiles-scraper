@@ -1,9 +1,5 @@
-import json
-from bs4 import BeautifulSoup
-from urllib.request import urlopen
-
 from src.Utils import to_int
-from src.InvalidProfileError import InvalidProfileError
+from src.BeautifulSoupFactory import BeautifulSoupFactory
 from src.PsnProfiles.Profile import Profile
 from src.PsnProfiles.ProfileSummary import ProfileSummary
 from src.PsnProfiles.Trophy import Trophy
@@ -15,38 +11,26 @@ class PsnProfileScraper:
     def __init__(self, psn_name=""):
         self.psn_name = psn_name
 
-        page = urlopen("https://psnprofiles.com/" + self.psn_name)
-        content = page.read().decode("utf-8")
-        self.parser = BeautifulSoup(content.replace("\r", "").replace("\t", "").replace("\n", ""), "html.parser")
-
-        content_games = ""
-        current_page = 1
-        while "nextPage = 0" not in content_games:
-            page = urlopen("https://psnprofiles.com/" + self.psn_name + "?ajax=1&page=" + str(current_page))
-
-            try:
-                content_games += json.loads(page.read().decode("utf-8"))["html"]
-            except json.decoder.JSONDecodeError:
-                # This is most likely an invalid psn name.
-                break
-            current_page += 1
-
-        if content_games:
-            self.parser_games = BeautifulSoup(content_games.replace("\r", "").replace("\t", "").replace("\n", ""),
-                                              "html.parser")
+        self.soup_profile = BeautifulSoupFactory.create_profile_soup(self.psn_name)
+        self.soup_games = BeautifulSoupFactory.create_games_soup(self.psn_name)
 
     # Returns the full PSN profile object.
     def get_profile(self) -> Profile:
-        if not hasattr(self, "parser_games"):
-            raise InvalidProfileError(self.psn_name + " is not a valid psn profile")
-
-        return Profile(self.psn_name, self.get_profile_summary(), self.get_recent_trophies(),
+        return Profile(self.psn_name, self.get_country(), self.get_profile_summary(), self.get_recent_trophies(),
                        self.get_rarest_trophies(), self.get_milestones(), self.get_games(), self.get_trophy_cabinet())
+
+    # Scrapes and returns country
+    def get_country(self) -> str:
+        country = ""
+        if self.soup_profile.select("img#bar-country"):
+            country = BeautifulSoupFactory.create_soup_by_content(self.soup_profile.select("img#bar-country")[0]["title"]).text
+
+        return country
 
     # Scrapes and returns the profile summary.
     def get_profile_summary(self) -> ProfileSummary:
-        profile_bar = self.parser.find("ul", class_="profile-bar")
-        stats = self.parser.select("div.stats.flex")[0]
+        profile_bar = self.soup_profile.find("ul", class_="profile-bar")
+        stats = self.soup_profile.select("div.stats.flex")[0]
 
         level = to_int(profile_bar.select("#bar-level li.icon-sprite.level")[0].text) if profile_bar.select(
             "#bar-level li.icon-sprite.level") else 0
@@ -66,8 +50,8 @@ class PsnProfileScraper:
             'rarity': {}
         }
 
-        if self.parser.select("div.sidebar div.box.no-top-border div.row.lg-hide"):
-            for trophy_rarity in self.parser.select("div.box.no-top-border div.row.lg-hide")[0].find_all('div',
+        if self.soup_profile.select("div.sidebar div.box.no-top-border div.row.lg-hide"):
+            for trophy_rarity in self.soup_profile.select("div.box.no-top-border div.row.lg-hide")[0].find_all('div',
                                                                                                          class_="col-lg"):
                 if not trophy_rarity.find("span", class_="typo-top"):
                     continue
@@ -100,11 +84,11 @@ class PsnProfileScraper:
 
     # Scrapes and returns the recent trophies.
     def get_recent_trophies(self) -> list:
-        if not self.parser.select("ul#recent-trophies"):
+        if not self.soup_profile.select("ul#recent-trophies"):
             return []
 
         recent_trophies = []
-        for recent_trophy in self.parser.select("ul#recent-trophies")[0].find_all('li'):
+        for recent_trophy in self.soup_profile.select("ul#recent-trophies")[0].find_all('li'):
             recent_trophies.append(Trophy(
                 recent_trophy.find("a", class_="title").text if recent_trophy.find("a", class_="title") else "",
                 recent_trophy.select("span.small_info_green a")[0].text if recent_trophy.select(
@@ -123,13 +107,13 @@ class PsnProfileScraper:
 
     # Scrapes and returns trophy cabinet
     def get_rarest_trophies(self) -> list:
-        if not self.parser.find("h3", text="Rarest Trophies"):
+        if not self.soup_profile.find("h3", text="Rarest Trophies"):
             return []
 
-        if not self.parser.select('div.sidebar div.box.no-top-border table'):
+        if not self.soup_profile.select('div.sidebar div.box.no-top-border table'):
             return []
 
-        rarest_trophies = self.parser.select('div.sidebar div.box.no-top-border table')[0]
+        rarest_trophies = self.soup_profile.select('div.sidebar div.box.no-top-border table')[0]
 
         trophies = []
         for trophy in rarest_trophies.find_all("tr"):
@@ -146,13 +130,13 @@ class PsnProfileScraper:
 
     # Scrapes and returns trophy cabinet
     def get_trophy_cabinet(self) -> list:
-        if not self.parser.find("h3", text="Trophy Cabinet"):
+        if not self.soup_profile.find("h3", text="Trophy Cabinet"):
             return []
 
-        if not self.parser.select("div.sidebar table.box.zebra"):
+        if not self.soup_profile.select("div.sidebar table.box.zebra"):
             return []
 
-        trophy_cabinet = self.parser.select("div.sidebar table.box.zebra")[0]
+        trophy_cabinet = self.soup_profile.select("div.sidebar table.box.zebra")[0]
 
         trophies = []
         for trophy in trophy_cabinet.find_all("tr"):
@@ -169,10 +153,10 @@ class PsnProfileScraper:
 
     # Scrapes and returns milestones.
     def get_milestones(self) -> list:
-        if not self.parser.find("h3", text="Trophy Milestones"):
+        if not self.soup_profile.find("h3", text="Trophy Milestones"):
             return []
 
-        milestones_table = self.parser.find("h3", text="Trophy Milestones").find_next()
+        milestones_table = self.soup_profile.find("h3", text="Trophy Milestones").find_next()
 
         milestones = []
         for milestone in milestones_table.find_all("tr"):
@@ -188,11 +172,11 @@ class PsnProfileScraper:
 
     # Scrapes and returns games.
     def get_games(self) -> list:
-        if not self.parser_games.find("tr"):
+        if not self.soup_games.find("tr"):
             return []
 
         games = []
-        for game in self.parser_games.find_all("tr"):
+        for game in self.soup_games.find_all("tr"):
             if not game.find("div", class_="small-info"):
                 continue
 

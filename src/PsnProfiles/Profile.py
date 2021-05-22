@@ -3,8 +3,9 @@ from src.PsnProfiles.ProfileSummary import ProfileSummary
 
 
 class Profile:
-    def __init__(self, name: str, summary: ProfileSummary, recent_trophies: list, rarest_trophies: list, milestones: list, games: list, trophy_cabinet: list):
+    def __init__(self, name: str, country: str, summary: ProfileSummary, recent_trophies: list, rarest_trophies: list, milestones: list, games: list, trophy_cabinet: list):
         self.name = name
+        self.country = country
         self.summary = summary
         self.recent_trophies = recent_trophies
         self.rarest_trophies = rarest_trophies
@@ -14,6 +15,9 @@ class Profile:
 
     def get_name(self) -> str:
         return self.name
+
+    def get_country(self) -> str:
+        return self.country
 
     def get_summary(self) -> ProfileSummary:
         return self.summary

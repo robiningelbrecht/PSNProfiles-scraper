@@ -60,6 +60,24 @@ Install Python3 then in a terminal:
       "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     }
   ],
+  "rarest_trophies": [
+    {
+      "title": "Blue Series clear",
+      "game": "Trackmania Turbo",
+      "rarity_percentage": "3.28%",
+      "rarity_label": "Ultra Rare",
+      "grade": "silver",
+      "icon_uri": "https://i.psnprofiles.com/games/4d4c0b/trophies/17S023638.png"
+    },
+    {
+      "title": "Stadium Blue clear",
+      "game": "Trackmania Turbo",
+      "rarity_percentage": "3.45%",
+      "rarity_label": "Ultra Rare",
+      "grade": "bronze",
+      "icon_uri": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png"
+    }
+  ],
   "milestones": [
     {
       "title": "Dragon Break Classic master",

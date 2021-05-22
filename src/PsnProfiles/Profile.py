@@ -3,10 +3,11 @@ from src.PsnProfiles.ProfileSummary import ProfileSummary
 
 
 class Profile:
-    def __init__(self, name: str, summary: ProfileSummary, recent_trophies: list, milestones: list, games: list, trophy_cabinet: list):
+    def __init__(self, name: str, summary: ProfileSummary, recent_trophies: list, rarest_trophies: list, milestones: list, games: list, trophy_cabinet: list):
         self.name = name
         self.summary = summary
         self.recent_trophies = recent_trophies
+        self.rarest_trophies = rarest_trophies
         self.milestones = milestones
         self.games = games
         self.trophy_cabinet = trophy_cabinet
@@ -19,6 +20,9 @@ class Profile:
 
     def get_recent_trophies(self) -> list:
         return self.recent_trophies
+
+    def get_rarest_trophies(self) -> list:
+        return self.rarest_trophies
 
     def get_milestones(self) -> list:
         return self.milestones

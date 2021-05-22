@@ -11,7 +11,7 @@ from src.PsnProfiles.Milestone import Milestone
 from src.PsnProfiles.Game import Game
 
 
-class PsnScraper:
+class PsnProfileScraper:
     def __init__(self, psn_name=""):
         self.psn_name = psn_name
 

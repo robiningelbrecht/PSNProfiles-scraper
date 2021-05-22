@@ -1,10 +1,10 @@
 import sys
 from src.InvalidProfileError import InvalidProfileError
-from src.PsnScraper import PsnScraper
+from src.PsnProfileScraper import PsnProfileScraper
 
 if __name__ == "__main__":
     psn_username = input("Enter PSN username:")
-    scraper = PsnScraper(psn_username)
+    scraper = PsnProfileScraper(psn_username)
 
     try:
         print(scraper.get_profile().to_json())

@@ -49,7 +49,7 @@ Install Python3 then in a terminal:
       "rarity_percentage": "90.93%",
       "rarity_label": "Common",
       "grade": "bronze",
-      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+      "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     },
     {
       "title": "Path of the Stars",
@@ -57,7 +57,7 @@ Install Python3 then in a terminal:
       "rarity_percentage": "94.29%",
       "rarity_label": "Common",
       "grade": "bronze",
-      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+      "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     }
   ],
   "milestones": [
@@ -99,7 +99,8 @@ Install Python3 then in a terminal:
       },
       "platform": "PS4",
       "ranked": "B",
-      "has_earned_platinum": false
+      "has_earned_platinum": false,
+      "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png"
     },
     {
       "title": "My Name is Mayo",
@@ -113,17 +114,18 @@ Install Python3 then in a terminal:
       },
       "platform": "PS4",
       "ranked": "S",
-      "has_earned_platinum": true
+      "has_earned_platinum": true,
+      "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png"
      }
   ],
-    "trophy_cabinet": [
+  "trophy_cabinet": [
     {
       "title": "Be Yourself",
       "game": "Marvel's Spider-Man: Miles Morales",
       "rarity_percentage": "56.11%",
       "rarity_label": "Common",
       "grade": "platinum",
-      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+      "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     },
     {
       "title": "Viking Legend",
@@ -131,7 +133,7 @@ Install Python3 then in a terminal:
       "rarity_percentage": "15.91%",
       "rarity_label": "Rare",
       "grade": "platinum",
-      "image_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+      "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     }
   ]    
 }

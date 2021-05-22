@@ -69,13 +69,13 @@ class PsnScraper:
         if self.parser.select("div.box.no-top-border div.row.lg-hide"):
             for trophy_rarity in self.parser.select("div.box.no-top-border div.row.lg-hide")[0].find_all('div',
                                                                                                          class_="col-lg"):
-                if not trophy_rarity.find('span', class_="typo-top"):
+                if not trophy_rarity.find("span", class_="typo-top"):
                     continue
-                if not trophy_rarity.find('span', class_="typo-bottom"):
+                if not trophy_rarity.find("span", class_="typo-bottom"):
                     continue
                 trophies["rarity"][
-                    trophy_rarity.find('span', class_="typo-bottom").text.lower().replace(" ", "_")] = to_int(
-                    trophy_rarity.find('span', class_="typo-top").text)
+                    trophy_rarity.find("span", class_="typo-bottom").text.lower().replace(" ", "_")] = to_int(
+                    trophy_rarity.find("span", class_="typo-top").text)
 
         stats = {
             'games_played': to_int(stats.find("span", text="Games Played").parent.contents[0]) if stats.find("span",
@@ -107,15 +107,15 @@ class PsnScraper:
         for recent_trophy in self.parser.select("ul#recent-trophies")[0].find_all('li'):
             recent_trophies.append(Trophy(
                 recent_trophy.find("a", class_="title").text if recent_trophy.find("a", class_="title") else "",
-                recent_trophy.select('span.small_info_green a')[0].text if recent_trophy.select(
-                    'span.small_info_green a') else "",
-                recent_trophy.select('span.separator span.typo-top')[0].text if recent_trophy.select(
-                    'span.separator span.typo-top') else "",
-                recent_trophy.select('span.separator span.typo-bottom')[0].text if recent_trophy.select(
-                    'span.separator span.typo-bottom') else "",
-                recent_trophy.select('span.separator.left img')[0]["alt"] if recent_trophy.select(
-                    'span.separator.left img') else "",
-                recent_trophy.select('picture.trophy img')[0]["src"] if recent_trophy.select('picture.trophy img') else "",
+                recent_trophy.select("span.small_info_green a")[0].text if recent_trophy.select(
+                    "span.small_info_green a") else "",
+                recent_trophy.select("span.separator span.typo-top")[0].text if recent_trophy.select(
+                    "span.separator span.typo-top") else "",
+                recent_trophy.select("span.separator span.typo-bottom")[0].text if recent_trophy.select(
+                    "span.separator span.typo-bottom") else "",
+                recent_trophy.select("span.separator.left img")[0]["alt"] if recent_trophy.select(
+                    "span.separator.left img") else "",
+                recent_trophy.select("picture.trophy img")[0]["src"] if recent_trophy.select('picture.trophy img') else "",
             ))
 
         return recent_trophies
@@ -125,17 +125,17 @@ class PsnScraper:
         if not self.parser.find("h3", text="Trophy Cabinet"):
             return []
 
-        trophy_cabinet = self.parser.select('table.box.zebra')[0]
+        trophy_cabinet = self.parser.select("table.box.zebra")[0]
         trophies = []
 
         for trophy in trophy_cabinet.find_all("tr"):
             trophies.append(Trophy(
                 trophy.find("a", class_="small-title").text if trophy.find("a", class_="small-title") else "",
                 trophy.find("a", rel="nofollow").text if trophy.find("a", rel="nofollow") else "",
-                trophy.select('span.typo-top')[0].text if trophy.select('span.typo-top') else "",
-                trophy.select('span.typo-bottom')[0].text if trophy.select('span.typo-bottom') else "",
-                trophy.select('span.separator.left img')[0]["alt"] if trophy.select('span.separator.left img') else "",
-                trophy.select('picture.trophy img')[0]["src"] if trophy.select('picture.trophy img') else "",
+                trophy.select("span.typo-top")[0].text if trophy.select("span.typo-top") else "",
+                trophy.select("span.typo-bottom")[0].text if trophy.select("span.typo-bottom") else "",
+                trophy.select("span.separator.left img")[0]["alt"] if trophy.select("span.separator.left img") else "",
+                trophy.select("picture.trophy img")[0]["src"] if trophy.select("picture.trophy img") else "",
             ))
 
         return trophies
@@ -184,17 +184,18 @@ class PsnScraper:
                 {
                     'obtained': trophies_obtained,
                     'total': trophies_total,
-                    'gold': game.select('span.icon-sprite.gold')[0].find_next().text if game.select(
-                        'span.icon-sprite.gold') else 0,
-                    'silver': game.select('span.icon-sprite.silver')[0].find_next().text if game.select(
-                        'span.icon-sprite.silver') else 0,
-                    'bronze': game.select('span.icon-sprite.bronze')[0].find_next().text if game.select(
-                        'span.icon-sprite.bronze') else 0,
-                    'completion': game.select('div.progress-bar span')[0].text if game.select(
-                        'div.progress-bar span') else 0,
+                    'gold': game.select("span.icon-sprite.gold")[0].find_next().text if game.select(
+                        "span.icon-sprite.gold") else 0,
+                    'silver': game.select("span.icon-sprite.silver")[0].find_next().text if game.select(
+                        "span.icon-sprite.silver") else 0,
+                    'bronze': game.select("span.icon-sprite.bronze")[0].find_next().text if game.select(
+                        "span.icon-sprite.bronze") else 0,
+                    'completion': game.select("div.progress-bar span")[0].text if game.select(
+                        "div.progress-bar span") else 0,
                 },
-                game.select('span.tag.platform')[0].text if game.select('span.tag.platform') else "",
-                game.select('span.game-rank')[0].text if game.select('span.game-rank') else "",
-                len(game.select('span.platinum.earned')) > 0
+                game.select("span.tag.platform")[0].text if game.select("span.tag.platform") else "",
+                game.select("span.game-rank")[0].text if game.select("span.game-rank") else "",
+                len(game.select("span.platinum.earned")) > 0,
+                game.select("picture.game img")[0]["src"] if game.select("picture.game img") else "",
             ))
         return games

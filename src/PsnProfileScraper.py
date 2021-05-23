@@ -15,10 +15,10 @@ class PsnProfileScraper:
     def __init__(self, psn_name=""):
         self.__psn_name = psn_name
 
-        self.__soup_profile = BeautifulSoupFactory.create_profile_soup(self.__psn_name)
-        self.__soup_games = BeautifulSoupFactory.create_from_games(self.__psn_name)
-        self.__soup_level_history = BeautifulSoupFactory.create_from_level_history(self.__psn_name)
-        self.__soup_stats = BeautifulSoupFactory.create_from_stats(self.__psn_name)
+        self.__soup_profile = BeautifulSoupFactory.create_for_profile(self.__psn_name)
+        self.__soup_games = BeautifulSoupFactory.create_for_games(self.__psn_name)
+        self.__soup_level_history = BeautifulSoupFactory.create_for_level_history(self.__psn_name)
+        self.__soup_stats = BeautifulSoupFactory.create_for_stats(self.__psn_name)
 
     # Returns a full PSN profile object.
     def get_profile(self) -> Profile:

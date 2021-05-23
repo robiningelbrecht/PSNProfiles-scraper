@@ -17,19 +17,19 @@ class BeautifulSoupFactory:
         return BeautifulSoupFactory.create_from_string(page.read().decode("utf-8"))
 
     # Creates soup object for the general profile.
-    def create_profile_soup(psn_name: str) -> BeautifulSoup:
+    def create_for_profile(psn_name: str) -> BeautifulSoup:
         return BeautifulSoupFactory.create_from_link("https://psnprofiles.com/" + psn_name)
 
     # Creates as soup object for level history.
-    def create_from_level_history(psn_name: str) -> BeautifulSoup:
+    def create_for_level_history(psn_name: str) -> BeautifulSoup:
         return BeautifulSoupFactory.create_from_link("https://psnprofiles.com/" + psn_name + "/levels")
 
     # Creates as soup object for stats.
-    def create_from_stats(psn_name: str) -> BeautifulSoup:
+    def create_for_stats(psn_name: str) -> BeautifulSoup:
         return BeautifulSoupFactory.create_from_link("https://psnprofiles.com/" + psn_name + "/stats")
 
     # Creates as soup object for all the games.
-    def create_from_games(psn_name: str) -> BeautifulSoup:
+    def create_for_games(psn_name: str) -> BeautifulSoup:
         content_games = ""
         current_page = 1
         while "nextPage = 0" not in content_games:

@@ -101,22 +101,22 @@ class PsnProfileScraper:
         if len(detailed_stats) > 6:
             for stat in detailed_stats[0].find_all("li"):
                 (platform, count) = list(stat.stripped_strings)
-                games["platforms"][platform] = to_int(count.replace("(", "").replace(")", ""))
+                games["platforms"][platform] = to_int(count)
 
             for stat in detailed_stats[5].find_all("li"):
                 (rank, count) = list(stat.stripped_strings)
-                games["ranks"][rank] = to_int(count.replace("(", "").replace(")", ""))
+                games["ranks"][rank] = to_int(count)
 
             total_points = 0
             for stat in detailed_stats[2].find_all("li"):
                 (grade, count) = list(stat.stripped_strings)
-                points[grade.lower()] = to_int(count.replace("(", "").replace(")", ""))
+                points[grade.lower()] = to_int(count)
                 total_points += points[grade.lower()]
             points["total"] = total_points
 
             for stat in detailed_stats[4].find_all("li"):
                 (completion, count) = list(stat.stripped_strings)
-                stats["completion"][completion] = to_int(count.replace("(", "").replace(")", ""))
+                stats["completion"][completion] = to_int(count)
 
         return ProfileSummary(level, trophies, points, games, stats)
 

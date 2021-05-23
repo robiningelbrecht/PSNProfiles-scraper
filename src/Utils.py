@@ -1,6 +1,6 @@
 def to_int(a: str) -> int:
     try:
-        return int(a.replace(",", ""))
+        return int(a.replace(",", "").replace("(", "").replace(")", ""))
     except ValueError:
         return 0
 

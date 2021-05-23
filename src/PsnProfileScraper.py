@@ -1,7 +1,5 @@
 from typing import List
 
-from src.Utils import to_int
-
 from src.BeautifulSoupFactory import BeautifulSoupFactory
 from src.PsnProfiles.Profile import Profile
 from src.PsnProfiles.ProfileSummary import ProfileSummary

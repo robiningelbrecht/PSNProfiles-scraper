@@ -1,36 +1,44 @@
+from typing import List
+
 from src.Utils import to_int
+from src.Utils import extract_game_from_uri
+
 from src.BeautifulSoupFactory import BeautifulSoupFactory
 from src.PsnProfiles.Profile import Profile
 from src.PsnProfiles.ProfileSummary import ProfileSummary
 from src.PsnProfiles.Trophy import Trophy
 from src.PsnProfiles.Milestone import Milestone
 from src.PsnProfiles.Game import Game
+from src.PsnProfiles.Level import Level
 
 
 class PsnProfileScraper:
     def __init__(self, psn_name=""):
-        self.psn_name = psn_name
+        self.__psn_name = psn_name
 
-        self.soup_profile = BeautifulSoupFactory.create_profile_soup(self.psn_name)
-        self.soup_games = BeautifulSoupFactory.create_games_soup(self.psn_name)
+        self.__soup_profile = BeautifulSoupFactory.create_profile_soup(self.__psn_name)
+        self.__soup_games = BeautifulSoupFactory.create_games_soup(self.__psn_name)
+        self.__soup_level_history = BeautifulSoupFactory.create_level_history_soup(self.__psn_name)
 
     # Returns the full PSN profile object.
     def get_profile(self) -> Profile:
-        return Profile(self.psn_name, self.get_country(), self.get_profile_summary(), self.get_recent_trophies(),
-                       self.get_rarest_trophies(), self.get_milestones(), self.get_games(), self.get_trophy_cabinet())
+        return Profile(self.__psn_name, self.get_country(), self.get_profile_summary(), self.get_recent_trophies(),
+                       self.get_rarest_trophies(), self.get_milestones(), self.get_games(), self.get_trophy_cabinet(),
+                       self.get_level_history())
 
     # Scrapes and returns country
     def get_country(self) -> str:
         country = ""
-        if self.soup_profile.select("img#bar-country"):
-            country = BeautifulSoupFactory.create_soup_by_content(self.soup_profile.select("img#bar-country")[0]["title"]).text
+        if self.__soup_profile.select("img#bar-country"):
+            country = BeautifulSoupFactory.create_soup_by_sting(
+                self.__soup_profile.select("img#bar-country")[0]["title"]).text
 
         return country
 
     # Scrapes and returns the profile summary.
     def get_profile_summary(self) -> ProfileSummary:
-        profile_bar = self.soup_profile.find("ul", class_="profile-bar")
-        stats = self.soup_profile.select("div.stats.flex")[0]
+        profile_bar = self.__soup_profile.find("ul", class_="profile-bar")
+        stats = self.__soup_profile.select("div.stats.flex")[0]
 
         level = to_int(profile_bar.select("#bar-level li.icon-sprite.level")[0].text) if profile_bar.select(
             "#bar-level li.icon-sprite.level") else 0
@@ -50,9 +58,9 @@ class PsnProfileScraper:
             'rarity': {}
         }
 
-        if self.soup_profile.select("div.sidebar div.box.no-top-border div.row.lg-hide"):
-            for trophy_rarity in self.soup_profile.select("div.box.no-top-border div.row.lg-hide")[0].find_all('div',
-                                                                                                         class_="col-lg"):
+        if self.__soup_profile.select("div.sidebar div.box.no-top-border div.row.lg-hide"):
+            for trophy_rarity in self.__soup_profile.select("div.box.no-top-border div.row.lg-hide")[0].find_all('div',
+                                                                                                                 class_="col-lg"):
                 if not trophy_rarity.find("span", class_="typo-top"):
                     continue
                 if not trophy_rarity.find("span", class_="typo-bottom"):
@@ -83,12 +91,12 @@ class PsnProfileScraper:
         return ProfileSummary(level, trophies, stats)
 
     # Scrapes and returns the recent trophies.
-    def get_recent_trophies(self) -> list:
-        if not self.soup_profile.select("ul#recent-trophies"):
+    def get_recent_trophies(self) -> List[Trophy]:
+        if not self.__soup_profile.select("ul#recent-trophies"):
             return []
 
         recent_trophies = []
-        for recent_trophy in self.soup_profile.select("ul#recent-trophies")[0].find_all('li'):
+        for recent_trophy in self.__soup_profile.select("ul#recent-trophies")[0].find_all('li'):
             recent_trophies.append(Trophy(
                 recent_trophy.find("a", class_="title").text if recent_trophy.find("a", class_="title") else "",
                 recent_trophy.select("span.small_info_green a")[0].text if recent_trophy.select(
@@ -106,14 +114,14 @@ class PsnProfileScraper:
         return recent_trophies
 
     # Scrapes and returns trophy cabinet
-    def get_rarest_trophies(self) -> list:
-        if not self.soup_profile.find("h3", text="Rarest Trophies"):
+    def get_rarest_trophies(self) -> List[Trophy]:
+        if not self.__soup_profile.find("h3", text="Rarest Trophies"):
             return []
 
-        if not self.soup_profile.select('div.sidebar div.box.no-top-border table'):
+        if not self.__soup_profile.select('div.sidebar div.box.no-top-border table'):
             return []
 
-        rarest_trophies = self.soup_profile.select('div.sidebar div.box.no-top-border table')[0]
+        rarest_trophies = self.__soup_profile.select('div.sidebar div.box.no-top-border table')[0]
 
         trophies = []
         for trophy in rarest_trophies.find_all("tr"):
@@ -129,14 +137,14 @@ class PsnProfileScraper:
         return trophies
 
     # Scrapes and returns trophy cabinet
-    def get_trophy_cabinet(self) -> list:
-        if not self.soup_profile.find("h3", text="Trophy Cabinet"):
+    def get_trophy_cabinet(self) -> List[Trophy]:
+        if not self.__soup_profile.find("h3", text="Trophy Cabinet"):
             return []
 
-        if not self.soup_profile.select("div.sidebar table.box.zebra"):
+        if not self.__soup_profile.select("div.sidebar table.box.zebra"):
             return []
 
-        trophy_cabinet = self.soup_profile.select("div.sidebar table.box.zebra")[0]
+        trophy_cabinet = self.__soup_profile.select("div.sidebar table.box.zebra")[0]
 
         trophies = []
         for trophy in trophy_cabinet.find_all("tr"):
@@ -152,11 +160,11 @@ class PsnProfileScraper:
         return trophies
 
     # Scrapes and returns milestones.
-    def get_milestones(self) -> list:
-        if not self.soup_profile.find("h3", text="Trophy Milestones"):
+    def get_milestones(self) -> List[Milestone]:
+        if not self.__soup_profile.find("h3", text="Trophy Milestones"):
             return []
 
-        milestones_table = self.soup_profile.find("h3", text="Trophy Milestones").find_next()
+        milestones_table = self.__soup_profile.find("h3", text="Trophy Milestones").find_next()
 
         milestones = []
         for milestone in milestones_table.find_all("tr"):
@@ -171,12 +179,12 @@ class PsnProfileScraper:
         return milestones
 
     # Scrapes and returns games.
-    def get_games(self) -> list:
-        if not self.soup_games.find("tr"):
+    def get_games(self) -> List[Game]:
+        if not self.__soup_games.find("tr"):
             return []
 
         games = []
-        for game in self.soup_games.find_all("tr"):
+        for game in self.__soup_games.find_all("tr"):
             if not game.find("div", class_="small-info"):
                 continue
 
@@ -185,23 +193,23 @@ class PsnProfileScraper:
 
             trophies = game.find("div", class_="small-info")
 
-            trophies_obtained = trophies.find_all("b")[0].text if trophies.find_all("b") else 0
-            trophies_total = trophies.find_all("b")[0].text if trophies.find_all("b") else 0
+            trophies_obtained = to_int(trophies.find_all("b")[0].text) if trophies.find_all("b") else 0
+            trophies_total = to_int(trophies.find_all("b")[0].text) if trophies.find_all("b") else 0
             if len(trophies.find_all("b")) == 2:
-                trophies_total = trophies.find_all("b")[1].text
+                trophies_total = to_int(trophies.find_all("b")[1].text)
 
             games.append(Game(
                 game.find("a", class_="title").text if game.find("a", class_="title") else "",
                 {
                     'obtained': trophies_obtained,
                     'total': trophies_total,
-                    'gold': game.select("span.icon-sprite.gold")[0].find_next().text if game.select(
+                    'gold': to_int(game.select("span.icon-sprite.gold")[0].find_next().text) if game.select(
                         "span.icon-sprite.gold") else 0,
-                    'silver': game.select("span.icon-sprite.silver")[0].find_next().text if game.select(
+                    'silver': to_int(game.select("span.icon-sprite.silver")[0].find_next().text) if game.select(
                         "span.icon-sprite.silver") else 0,
-                    'bronze': game.select("span.icon-sprite.bronze")[0].find_next().text if game.select(
+                    'bronze': to_int(game.select("span.icon-sprite.bronze")[0].find_next().text) if game.select(
                         "span.icon-sprite.bronze") else 0,
-                    'completion': game.select("div.progress-bar span")[0].text if game.select(
+                    'completion': to_int(game.select("div.progress-bar span")[0].text) if game.select(
                         "div.progress-bar span") else 0,
                 },
                 game.select("span.tag.platform")[0].text if game.select("span.tag.platform") else "",
@@ -210,3 +218,23 @@ class PsnProfileScraper:
                 game.select("picture.game img")[0]["src"] if game.select("picture.game img") else "",
             ))
         return games
+
+    # Scrapes and returns level history.
+    def get_level_history(self) -> List[Level]:
+        if not self.__soup_level_history.select("table.box.zebra"):
+            return []
+
+        levels = []
+        for level in self.__soup_level_history.select("table.box.zebra")[0].find_all("tr"):
+            levels.append(Level(
+                to_int(list(level.stripped_strings)[2]),
+                extract_game_from_uri(level.find("a")["href"]),
+                level.select("picture.game img")[0]["src"] if level.select("picture.game img") else "",
+                list(level.stripped_strings)[0],
+                list(level.stripped_strings)[1],
+                level.select("picture.trophy img")[0]["src"] if level.select("picture.trophy img") else "",
+                level.select("span.typo-top-date nobr")[0].text + " " + level.select("span.typo-bottom-date nobr")[
+                    0].text
+            ))
+
+        return levels

@@ -2,11 +2,11 @@ import json
 
 
 class Game:
-    def __init__(self, title: str, trophy_stats: dict, platform: str, ranked: str, has_earned_platinum: bool, thumbnail_uri: str):
+    def __init__(self, title: str, trophy_stats: dict, platform: str, rank: str, has_earned_platinum: bool, thumbnail_uri: str):
         self.title = title
         self.trophy_stats = trophy_stats
         self.platform = platform
-        self.ranked = ranked
+        self.rank = rank
         self.has_earned_platinum = has_earned_platinum
         self.thumbnail_uri = thumbnail_uri
 

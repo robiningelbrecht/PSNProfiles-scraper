@@ -117,7 +117,7 @@ Install Python3 then in a terminal:
         "completion": "56%"
       },
       "platform": "PS4",
-      "ranked": "B",
+      "rank": "B",
       "has_earned_platinum": false,
       "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png"
     },
@@ -132,7 +132,7 @@ Install Python3 then in a terminal:
         "completion": "100%"
       },
       "platform": "PS4",
-      "ranked": "S",
+      "rank": "S",
       "has_earned_platinum": true,
       "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png"
      }
@@ -154,7 +154,27 @@ Install Python3 then in a terminal:
       "grade": "platinum",
       "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
     }
-  ]    
+  ],
+  "level_history": [
+    {
+      "level": 20,
+      "game": "Assassins Creed Syndicate",
+      "game_thumbnail_uri": "https://i.psnprofiles.com/games/c2af51/S7d1b26.png",
+      "trophy_name": "Bare-Knuckle Champion",
+      "trophy_description": "Win three different Fight Clubs.",
+      "trophy_icon_uri": "https://i.psnprofiles.com/games/c2af51/trophies/16Sa76145.png",
+      "date": "12th May 2018 10:54:10 AM"
+    },
+    {
+      "level": 10,
+      "game": "Assassins Creed Iv Black Flag",
+      "game_thumbnail_uri": "https://i.psnprofiles.com/games/cc3b08/S359338.png",
+      "trophy_name": "Barfly",
+      "trophy_description": "Unlock all taverns.",
+      "trophy_icon_uri": "https://i.psnprofiles.com/games/cc3b08/trophies/36Sbcace5.png",
+      "date": "29th Apr 2018 9:12:16 AM"
+    }
+  ]
 }
 ```
 

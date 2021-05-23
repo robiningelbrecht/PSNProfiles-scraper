@@ -2,9 +2,11 @@ import json
 
 
 class ProfileSummary:
-    def __init__(self, level: int, trophies: dict, stats: dict):
+    def __init__(self, level: int, trophies: dict, points: dict, games: dict, stats: dict):
         self.level = level
         self.trophies = trophies
+        self.points = points
+        self.games = games
         self.stats = stats
 
     def to_json(self):

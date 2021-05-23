@@ -17,29 +17,61 @@ Install Python3 then in a terminal:
   "summary": {
     "level": 354,
     "trophies": {
-      "total": 2577,
+      "total": 2578,
       "grade": {
         "platinum": 66,
         "gold": 576,
         "silver": 583,
-        "bronze": 1352
+        "bronze": 1353
       },
       "rarity": {
         "ultra_rare": 4,
         "very_rare": 10,
         "rare": 39,
         "uncommon": 406,
-        "common": 2118
+        "common": 2119
+      }
+    },
+    "points": {
+      "platinum": 19800,
+      "gold": 51840,
+      "silver": 17490,
+      "bronze": 20295,
+      "total": 109425
+    },
+    "games": {
+      "played": 165,
+      "completed": 61,
+      "platforms": {
+        "PS5": 4,
+        "PS4": 157,
+        "PS3": 0,
+        "PS Vita": 0,
+        "Multiplatform": 4
+      },
+      "ranks": {
+        "S": 61,
+        "A": 12,
+        "B": 11,
+        "C": 14,
+        "D": 12,
+        "E": 36,
+        "F": 19
       }
     },
     "stats": {
-      "games_played": 165,
-      "completed_games": 61,
-      "completion": "56.91%",
-      "unearned_trophies": 2686,
+      "completion": {
+        "average": "56.92%",
+        "80% - 100%": 66,
+        "60% - 79.99%": 15,
+        "40% - 59.99%": 12,
+        "20% - 39.99%": 14,
+        "0% - 19.99%": 58
+      },
+      "unearned_trophies": 2685,
       "trophies_per_day": "2.25",
-      "views": 490,
-      "world_rank": 112045,
+      "views": 501,
+      "world_rank": 112163,
       "country_rank": 1486
     }
   },

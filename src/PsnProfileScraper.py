@@ -19,6 +19,7 @@ class PsnProfileScraper:
         self.__soup_profile = BeautifulSoupFactory.create_profile_soup(self.__psn_name)
         self.__soup_games = BeautifulSoupFactory.create_games_soup(self.__psn_name)
         self.__soup_level_history = BeautifulSoupFactory.create_level_history_soup(self.__psn_name)
+        self.__soup_stats = BeautifulSoupFactory.create_stats_soup(self.__psn_name)
 
     # Returns the full PSN profile object.
     def get_profile(self) -> Profile:
@@ -69,13 +70,20 @@ class PsnProfileScraper:
                     trophy_rarity.find("span", class_="typo-bottom").text.lower().replace(" ", "_")] = to_int(
                     trophy_rarity.find("span", class_="typo-top").text)
 
-        stats = {
-            'games_played': to_int(stats.find("span", text="Games Played").parent.contents[0]) if stats.find("span",
-                                                                                                             text="Games Played") else 0,
-            'completed_games': to_int(stats.find("span", text="Completed Games").parent.contents[0]) if stats.find(
+        games = {
+            'played': to_int(stats.find("span", text="Games Played").parent.contents[0]) if stats.find("span",
+                                                                                                       text="Games Played") else 0,
+            'completed': to_int(stats.find("span", text="Completed Games").parent.contents[0]) if stats.find(
                 "span", text="Completed Games") else 0,
-            'completion': stats.find("span", text="Completion").parent.contents[0] if stats.find("span",
-                                                                                                 text="Completion") else 0,
+            'platforms': {},
+            'ranks': {}
+        }
+
+        stats = {
+            'completion': {
+                'average': stats.find("span", text="Completion").parent.contents[0] if stats.find("span",
+                                                                                                  text="Completion") else 0,
+            },
             'unearned_trophies': to_int(stats.find("span", text="Unearned Trophies").parent.contents[0]) if stats.find(
                 "span", text="Unearned Trophies") else 0,
             'trophies_per_day': stats.find("span", text="Trophies Per Day").parent.contents[0] if stats.find("span",
@@ -88,7 +96,29 @@ class PsnProfileScraper:
                                                                                                              text="Country Rank") else 0,
         }
 
-        return ProfileSummary(level, trophies, stats)
+        detailed_stats = list(self.__soup_stats.find_all("div", class_="col-xs-4"))
+        points = {}
+        if len(detailed_stats) > 6:
+            for stat in detailed_stats[0].find_all("li"):
+                (platform, count) = list(stat.stripped_strings)
+                games["platforms"][platform] = to_int(count.replace("(", "").replace(")", ""))
+
+            for stat in detailed_stats[5].find_all("li"):
+                (rank, count) = list(stat.stripped_strings)
+                games["ranks"][rank] = to_int(count.replace("(", "").replace(")", ""))
+
+            total_points = 0
+            for stat in detailed_stats[2].find_all("li"):
+                (grade, count) = list(stat.stripped_strings)
+                points[grade.lower()] = to_int(count.replace("(", "").replace(")", ""))
+                total_points += points[grade.lower()]
+            points["total"] = total_points
+
+            for stat in detailed_stats[4].find_all("li"):
+                (completion, count) = list(stat.stripped_strings)
+                stats["completion"][completion] = to_int(count.replace("(", "").replace(")", ""))
+
+        return ProfileSummary(level, trophies, points, games, stats)
 
     # Scrapes and returns the recent trophies.
     def get_recent_trophies(self) -> List[Trophy]:

@@ -1,4 +1,5 @@
 import json
+import requests
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -13,8 +14,7 @@ class BeautifulSoupFactory:
 
     # Creates soup object for the general profile.
     def create_from_link(link: str) -> BeautifulSoup:
-        page = urlopen(link)
-        return BeautifulSoupFactory.create_from_string(page.read().decode("utf-8"))
+        return BeautifulSoupFactory.create_from_string(requests.get(link).text)
 
     # Creates soup object for the general profile.
     def create_for_profile(psn_name: str) -> BeautifulSoup:

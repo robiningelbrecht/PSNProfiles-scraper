@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/robiningelbrecht/psnprofiles-scrapers/actions)
+[![Python app tests](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml)
 
 # Python PSNProfiles scraper
 Scrape PSNProfiles pages using a Python CLI script

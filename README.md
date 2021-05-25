@@ -115,25 +115,25 @@ Install Python3 then in a terminal:
   ],
   "milestones": [
     {
-      "title": "Dragon Break Classic master",
+      "trophy": "Dragon Break Classic master",
       "game": "Dragon Break Classic",
       "description": "Latest Platinum",
       "date": "6 days ago"
     },
     {
-      "title": "Projectile Pro",
+      "trophy": "Projectile Pro",
       "game": "Immortals Fenyx Rising",
       "description": "2,500th Trophy",
       "date": "4 weeks ago"
     },
     {
-      "title": "Platinum Paw",
+      "trophy": "Platinum Paw",
       "game": "Thunder Paw",
       "description": "50th Platinum",
       "date": "8 months ago"
     },
     {
-      "title": "Thank you Mr. Kitty!",
+      "trophy": "Thank you Mr. Kitty!",
       "game": "Red Bow",
       "description": "2,000th Trophy",
       "date": "8 months ago"
@@ -192,20 +192,28 @@ Install Python3 then in a terminal:
   "level_history": [
     {
       "level": 20,
-      "game": "Assassins Creed Syndicate",
-      "game_thumbnail_uri": "https://i.psnprofiles.com/games/c2af51/S7d1b26.png",
-      "trophy_name": "Bare-Knuckle Champion",
-      "trophy_description": "Win three different Fight Clubs.",
-      "trophy_icon_uri": "https://i.psnprofiles.com/games/c2af51/trophies/16Sa76145.png",
+      "game": {
+        "title": "Assassins Creed Syndicate",
+        "thumbnail_uri": "https://i.psnprofiles.com/games/c2af51/S7d1b26.png"
+      },
+      "trophy": {
+        "title": "Bare-Knuckle Champion",
+        "description": "Win three different Fight Clubs.",
+        "icon_uri": "https://i.psnprofiles.com/games/c2af51/trophies/16Sa76145.png"
+      },
       "date": "12th May 2018 10:54:10 AM"
     },
     {
       "level": 10,
-      "game": "Assassins Creed Iv Black Flag",
-      "game_thumbnail_uri": "https://i.psnprofiles.com/games/cc3b08/S359338.png",
-      "trophy_name": "Barfly",
-      "trophy_description": "Unlock all taverns.",
-      "trophy_icon_uri": "https://i.psnprofiles.com/games/cc3b08/trophies/36Sbcace5.png",
+      "game": {
+        "title": "Assassins Creed Iv Black Flag",
+        "thumbnail_uri": "https://i.psnprofiles.com/games/cc3b08/S359338.png"
+      },
+      "trophy": {
+        "title": "Barfly",
+        "description": "Unlock all taverns.",
+        "icon_uri": "https://i.psnprofiles.com/games/cc3b08/trophies/36Sbcace5.png"
+      },
       "date": "29th Apr 2018 9:12:16 AM"
     }
   ]

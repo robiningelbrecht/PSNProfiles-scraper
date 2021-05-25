@@ -6,8 +6,8 @@ from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
 class Milestone(PsnProfilesObjectInterface):
-    def __init__(self, title: str, game: str, description: str, date: str):
-        self.title = title
+    def __init__(self, trophy: str, game: str, description: str, date: str):
+        self.trophy = trophy
         self.game = game
         self.description = description
         self.date = date

@@ -1,7 +1,7 @@
 [![Python app tests](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml)
 
 # Python PSNProfiles scraper
-Scrape PSNProfiles pages using a Python CLI script
+Scrape PSNProfiles profile pages using a Python CLI script
 
 ## Usage
 

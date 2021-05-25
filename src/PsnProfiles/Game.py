@@ -3,10 +3,10 @@ import json
 from bs4 import BeautifulSoup
 
 from src.Utils import to_int
-from src.PsnProfileObjectInterface import PsnProfileObjectInterface
+from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
-class Game(PsnProfileObjectInterface):
+class Game(PsnProfilesObjectInterface):
     def __init__(self, title: str, trophy_stats: dict, platform: str, rank: str, has_earned_platinum: bool,
                  thumbnail_uri: str):
         self.title = title

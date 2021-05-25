@@ -9,7 +9,7 @@ from src.PsnProfiles.Game import Game
 from src.PsnProfiles.Level import Level
 
 
-class PsnProfileScraper:
+class PsnProfilesScraper:
     def __init__(self, psn_name=""):
         self.__psn_name = psn_name
 

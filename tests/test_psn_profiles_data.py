@@ -1,6 +1,6 @@
-from src.PsnProfileScraper import PsnProfileScraper
+from src.PsnProfilesScraper import PsnProfilesScraper
 
-scraper = PsnProfileScraper("Fluttezuhher")
+scraper = PsnProfilesScraper("Fluttezuhher")
 
 
 def test_json_structure():

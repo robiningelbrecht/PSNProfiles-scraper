@@ -2,10 +2,10 @@ from __future__ import annotations
 import json
 from bs4 import BeautifulSoup
 
-from src.PsnProfileObjectInterface import PsnProfileObjectInterface
+from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
-class Milestone(PsnProfileObjectInterface):
+class Milestone(PsnProfilesObjectInterface):
     def __init__(self, title: str, game: str, description: str, date: str):
         self.title = title
         self.game = game

@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 
 from src.Utils import to_int
 from src.Utils import extract_game_from_uri
-from src.PsnProfileObjectInterface import PsnProfileObjectInterface
+from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
-class Level(PsnProfileObjectInterface):
+class Level(PsnProfilesObjectInterface):
 
     def __init__(self, level: int, game: str, game_thumbnail_uri: str, trophy_name: str, trophy_description: str,
                  trophy_icon_uri: str, date: str):

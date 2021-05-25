@@ -33,10 +33,8 @@ class BeautifulSoupFactory:
         content_games = ""
         current_page = 1
         while "nextPage = 0" not in content_games:
-            page = urlopen("https://psnprofiles.com/" + psn_name + "?ajax=1&page=" + str(current_page))
-
             try:
-                content_games += json.loads(page.read().decode("utf-8"))["html"]
+                content_games += requests.get("https://psnprofiles.com/" + psn_name + "?ajax=1&page=" + str(current_page)).json()["html"]
             except json.decoder.JSONDecodeError:
                 # This is most likely an invalid psn name.
                 break

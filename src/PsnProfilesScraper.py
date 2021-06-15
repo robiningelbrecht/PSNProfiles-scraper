@@ -1,5 +1,6 @@
 from typing import List
 
+from progress.bar import Bar
 from src.BeautifulSoupFactory import BeautifulSoupFactory
 from src.PsnProfiles.Profile import Profile
 from src.PsnProfiles.ProfileSummary import ProfileSummary
@@ -11,12 +12,18 @@ from src.PsnProfiles.Level import Level
 
 class PsnProfilesScraper:
     def __init__(self, psn_name=""):
+        bar = Bar('Fetching profile', max=4)
         self.__psn_name = psn_name
 
         self.__soup_profile = BeautifulSoupFactory.create_for_profile(self.__psn_name)
+        bar.next()
         self.__soup_games = BeautifulSoupFactory.create_for_games(self.__psn_name)
+        bar.next()
         self.__soup_level_history = BeautifulSoupFactory.create_for_level_history(self.__psn_name)
+        bar.next()
         self.__soup_stats = BeautifulSoupFactory.create_for_stats(self.__psn_name)
+        bar.next()
+        bar.finish()
 
     # Returns a full PSN profile object.
     def get_profile(self) -> Profile:

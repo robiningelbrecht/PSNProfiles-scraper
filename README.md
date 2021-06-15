@@ -7,8 +7,7 @@ Scrape PSNProfiles profile pages using a Python CLI script
 
 Install Python3 then in a terminal:
 1. Run `python -m pip install -r requirements.txt`
-2. Run `python main.py`
-3. Fill out PSN username (= case-sensitive)
+2. Run `python main.py YourUserName`
 
 ## Example JSON output
 

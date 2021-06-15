@@ -1,15 +1,19 @@
+import argparse
 import sys
+
 from src.InvalidProfileError import InvalidProfileError
 from src.PsnProfilesScraper import PsnProfilesScraper
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Required argument \"username\" is missing", file=sys.stderr)
-        sys.exit(0)
+    # Initiate the parser
+    parser = argparse.ArgumentParser(description='Scrape a PSN profile and return it in proper JSON.')
+    parser.add_argument('username', type=str, help='PSN username to scrape')
+    parser.add_argument('-d', '--detailed', action='store_true', help='Fetch detailed game info (takes longer to process)')
+    # Read arguments from the command line
+    args = parser.parse_args()
 
-    psn_username = sys.argv[1]
     try:
-        scraper = PsnProfilesScraper(psn_username)
+        scraper = PsnProfilesScraper(args.username)
         print(scraper.get_profile().to_json())
     except InvalidProfileError:
-        print("\"" + psn_username + "\" is not a valid psn profile", file=sys.stderr)
+        print("\n\"%s\" is not a valid PSN profile" % args.username, file=sys.stderr)

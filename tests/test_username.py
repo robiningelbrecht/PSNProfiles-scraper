@@ -5,12 +5,13 @@ from src.InvalidProfileError import InvalidProfileError
 
 
 def test_valid_username():
-    scraper = PsnProfilesScraper("Fluttezuhher")
-    profile = scraper.get_profile()
+    scraper = PsnProfilesScraper()
+    profile = scraper.get_profile("Fluttezuhher", False)
 
     assert profile.get_name() == "Fluttezuhher"
 
 
 def test_invalid_username():
     with pytest.raises(InvalidProfileError):
-        PsnProfilesScraper("InvalidUsernameFoSho")
+        scraper = PsnProfilesScraper()
+        scraper.get_profile("InvalidUsernameFoSho", False)

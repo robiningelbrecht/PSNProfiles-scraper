@@ -1,7 +1,7 @@
 import pytest
 
-from src.PsnProfilesScraper import PsnProfilesScraper
-from src.InvalidProfileError import InvalidProfileError
+from psnprofiles_scraper.src.PsnProfilesScraper import PsnProfilesScraper
+from psnprofiles_scraper.src.InvalidProfileError import InvalidProfileError
 
 
 def test_valid_username():

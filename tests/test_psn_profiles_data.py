@@ -1,4 +1,4 @@
-from src.PsnProfilesScraper import PsnProfilesScraper
+from psnprofiles_scraper.src.PsnProfilesScraper import PsnProfilesScraper
 
 scraper = PsnProfilesScraper()
 profile = scraper.get_profile("Fluttezuhher", False)

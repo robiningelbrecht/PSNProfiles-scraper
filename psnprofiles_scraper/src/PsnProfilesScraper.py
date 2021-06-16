@@ -1,13 +1,13 @@
 from typing import List
 
-from src.ProgressBar import ProgressBar
-from src.BeautifulSoupFactory import BeautifulSoupFactory
-from src.PsnProfiles.Profile import Profile
-from src.PsnProfiles.ProfileSummary import ProfileSummary
-from src.PsnProfiles.Trophy import Trophy
-from src.PsnProfiles.Milestone import Milestone
-from src.PsnProfiles.Game import Game
-from src.PsnProfiles.Level import Level
+from psnprofiles_scraper.src.ProgressBar import ProgressBar
+from psnprofiles_scraper.src.BeautifulSoupFactory import BeautifulSoupFactory
+from psnprofiles_scraper.src.PsnProfiles.Profile import Profile
+from psnprofiles_scraper.src.PsnProfiles.ProfileSummary import ProfileSummary
+from psnprofiles_scraper.src.PsnProfiles.Trophy import Trophy
+from psnprofiles_scraper.src.PsnProfiles.Milestone import Milestone
+from psnprofiles_scraper.src.PsnProfiles.Game import Game
+from psnprofiles_scraper.src.PsnProfiles.Level import Level
 
 
 class PsnProfilesScraper:

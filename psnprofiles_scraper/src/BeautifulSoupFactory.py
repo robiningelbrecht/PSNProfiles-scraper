@@ -2,7 +2,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-from src.InvalidProfileError import InvalidProfileError
+from psnprofiles_scraper.src.InvalidProfileError import InvalidProfileError
 
 
 class BeautifulSoupFactory:

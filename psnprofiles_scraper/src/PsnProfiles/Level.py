@@ -2,9 +2,9 @@ from __future__ import annotations
 import json
 from bs4 import BeautifulSoup
 
-from src.Utils import to_int
-from src.Utils import extract_game_from_uri
-from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from psnprofiles_scraper.src.Utils import to_int
+from psnprofiles_scraper.src.Utils import extract_game_from_uri
+from psnprofiles_scraper.src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
 class Level(PsnProfilesObjectInterface):

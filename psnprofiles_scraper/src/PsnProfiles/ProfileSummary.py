@@ -2,8 +2,8 @@ from __future__ import annotations
 import json
 from bs4 import BeautifulSoup
 
-from src.Utils import to_int
-from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from psnprofiles_scraper.src.Utils import to_int
+from psnprofiles_scraper.src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
 class ProfileSummary(PsnProfilesObjectInterface):

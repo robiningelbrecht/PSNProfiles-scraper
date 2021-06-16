@@ -1,8 +1,8 @@
 import argparse
 import sys
 
-from src.InvalidProfileError import InvalidProfileError
-from src.PsnProfilesScraper import PsnProfilesScraper
+from psnprofiles_scraper.src.InvalidProfileError import InvalidProfileError
+from psnprofiles_scraper.src.PsnProfilesScraper import PsnProfilesScraper
 
 if __name__ == "__main__":
     # Initiate the parser

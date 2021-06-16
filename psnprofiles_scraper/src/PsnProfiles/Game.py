@@ -3,10 +3,10 @@ import json
 import re
 from bs4 import BeautifulSoup
 
-from src.Utils import to_int
-from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
-from src.BeautifulSoupFactory import BeautifulSoupFactory
-from src.PsnProfiles.Trophy import Trophy
+from psnprofiles_scraper.src.Utils import to_int
+from psnprofiles_scraper.src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from psnprofiles_scraper.src.BeautifulSoupFactory import BeautifulSoupFactory
+from psnprofiles_scraper.src.PsnProfiles.Trophy import Trophy
 
 
 class Game(PsnProfilesObjectInterface):

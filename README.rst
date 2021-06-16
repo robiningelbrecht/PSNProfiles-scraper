@@ -1,15 +1,33 @@
-[![Python app tests](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml/badge.svg)](https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml)
-
-# Python PSNProfiles scraper
+Python PSNProfiles scraper
+===========================
 Scrape PSNProfiles profile pages using a Python CLI script
 
-## Usage
+.. |pypi| image:: https://img.shields.io/pypi/v/progress.svg
+   :target: https://pypi.org/project/progress/
+
+.. |test| image:: https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml/badge.svg
+   :target: https://github.com/robiningelbrecht/psnprofiles-scraper
+
+Installation
+-------------
 
 Install Python3 then in a terminal:
-1. Run `python -m pip install -r requirements.txt`
-2. Run `python main.py YourUserName -d`
 
-## Example JSON output
+- Run `python -m pip install -r requirements.txt`
+- Run `python main.py YourUserName -d`
+
+Or download from PyPi
+
+.. code-block:: shell
+
+    pip install psnprofiles_scraper
+
+Usage
+------
+
+
+Example JSON output
+-------------------
 
 ```json
 {

@@ -1,0 +1,12 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "psnprofiles_scraper"
+author = "Robin Ingelbrecht"
+author-email = "ingebrechtrobin@gmail.com"
+home-page = "https://github.com/robiningelbrecht/psnprofiles-scraper"
+classifiers = [ "License :: OSI Approved :: MIT License", "Environment :: Console", "Intended Audience :: Developers", "Programming Language :: Python :: 3.9"]
+description-file = "README.rst"
+

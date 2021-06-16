@@ -15,10 +15,11 @@ Installation
 
 Install Python3 then in a terminal:
 
+- Run `git clone https://github.com/robiningelbrecht/psnprofiles-scraper`
 - Run `python -m pip install -r requirements.txt`
-- Run `python main.py YourUserName -d`
+- Run `python main.py YourUserName (-d)`
 
-Or download from PyPi
+Or install from PyPi
 
 .. code-block:: shell
 
@@ -31,10 +32,8 @@ Usage
 
     from psnprofiles_scraper.src.PsnProfilesScraper import PsnProfilesScraper
 
-
-    if __name__ == '__main__':
-        scraper = PsnProfilesScraper()
-        print(scraper.get_profile("YourUsername", False).to_json())
+    scraper = PsnProfilesScraper()
+    print(scraper.get_profile("YourUsername", False).to_json())
 
 Example JSON output
 -------------------

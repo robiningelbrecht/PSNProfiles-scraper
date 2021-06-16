@@ -15,9 +15,9 @@ Installation
 
 Install Python3 then in a terminal:
 
-- Run `git clone https://github.com/robiningelbrecht/psnprofiles-scraper`
-- Run `python -m pip install -r requirements.txt`
-- Run `python main.py YourUserName (-d)`
+- Run ``git clone https://github.com/robiningelbrecht/psnprofiles-scraper``
+- Run ``python -m pip install -r requirements.txt``
+- Run ``python main.py YourUserName (-d)``
 
 Or install from PyPi
 

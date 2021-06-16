@@ -13,7 +13,7 @@ Scrape PSNProfiles profile pages using a Python CLI script
 Installation
 -------------
 
-Install Python3 then in a terminal:
+Install Python>=3.9 then in a terminal:
 
 .. code-block:: shell
 

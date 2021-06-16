@@ -2,7 +2,7 @@ from __future__ import annotations
 import json
 from bs4 import BeautifulSoup
 
-from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
 class Milestone(PsnProfilesObjectInterface):

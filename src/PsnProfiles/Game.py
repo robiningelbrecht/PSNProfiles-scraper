@@ -1,9 +1,12 @@
 from __future__ import annotations
 import json
+import re
 from bs4 import BeautifulSoup
 
 from src.Utils import to_int
-from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from src.BeautifulSoupFactory import BeautifulSoupFactory
+from src.PsnProfiles.Trophy import Trophy
 
 
 class Game(PsnProfilesObjectInterface):
@@ -17,8 +20,44 @@ class Game(PsnProfilesObjectInterface):
         self.thumbnail_uri = thumbnail_uri
         self.uri = uri
 
+        # Instance properties for detailed info.
+        self.cover_uri = None
+        self.background_uri = None
+        self.trophies = []
+        self.developers = []
+        self.publishers = []
+        self.genres = []
+        self.themes = []
+        self.modes = []
+
     def populate_details_from_soup(self, soup: BeautifulSoup):
-        return ''
+        self.cover_uri = soup.select("div.game-image-holder picture.game img")[0]["src"] if soup.select(
+            "div.game-image-holder picture.game img") else ""
+        self.background_uri = re.findall('url\(([^)]+)\)', soup.select("div#banner div.img")[1]["style"])[
+            0] if soup.select("div#banner div.img") else ""
+        self.developers = soup.find("td", text=re.compile("Developer.*")).find_next().text.split(', ') if soup.find(
+            "td", text=re.compile("Developer.*")) else ""
+        self.publishers = soup.find("td", text=re.compile("Publisher.*")).find_next().text.split(', ') if soup.find(
+            "td", text=re.compile("Publisher.*")) else ""
+        self.genres = soup.find("td", text=re.compile("Genre.*")).find_next().text.split(', ') if soup.find("td",
+                                                                                                            text=re.compile(
+                                                                                                                "Genre.*")) else ""
+        self.themes = soup.find("td", text=re.compile("Theme.*")).find_next().text.split(', ') if soup.find("td",
+                                                                                                            text=re.compile(
+                                                                                                                "Theme.*")) else ""
+        self.modes = soup.find("td", text=re.compile("Mode.*")).find_next().text.split(', ') if soup.find("td",
+                                                                                                          text=re.compile(
+                                                                                                              "Mode.*")) else ""
+        if not soup.select("div.col-xs div.box.no-top-border table"):
+            return
+
+        # Append all trophy info to game.
+        for table in soup.select("div.col-xs div.box.no-top-border table"):
+            for row in table.find_all('tr'):
+                if len(row.find_all('td')) < 5:
+                    continue
+
+                self.trophies.append(Trophy.create_from_game_detail_soup(BeautifulSoupFactory.create_from_string(str(row))))
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -50,5 +89,6 @@ class Game(PsnProfilesObjectInterface):
             soup.select("span.game-rank")[0].text if soup.select("span.game-rank") else "",
             len(soup.select("span.platinum.earned")) > 0,
             soup.select("picture.game img")[0]["src"] if soup.select("picture.game img") else "",
-            "https://psnprofiles.com" + soup.find("a", class_="title")["href"] if soup.find("a", class_="title") else "",
+            "https://psnprofiles.com" + soup.find("a", class_="title")["href"] if soup.find("a",
+                                                                                            class_="title") else "",
         )

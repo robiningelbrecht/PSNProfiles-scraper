@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 from src.Utils import to_int
 from src.Utils import extract_game_from_uri
-from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
 class Level(PsnProfilesObjectInterface):

@@ -3,7 +3,7 @@ import json
 from bs4 import BeautifulSoup
 
 from src.Utils import to_int
-from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
+from src.PsnProfiles.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 
 class ProfileSummary(PsnProfilesObjectInterface):

@@ -19,8 +19,11 @@ setup(
     license='MIT',
     packages=['psnprofiles_scraper'],
     install_requires=[
-        'markdown',
+        'beautifulsoup4 ~= 4.9.3',
+        'progress ~= 1.5',
+        'requests ~= 2.25',
     ],
+    python_requires='>=3.69',
     include_package_data=True,
     classifiers=[
         'Environment :: Console',

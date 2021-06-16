@@ -13,7 +13,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     try:
-        scraper = PsnProfilesScraper(args.username)
-        print(scraper.get_profile().to_json())
+        scraper = PsnProfilesScraper()
+        scraper.get_profile(args.username, args.detailed).to_json()
     except InvalidProfileError:
         print("\n\"%s\" is not a valid PSN profile" % args.username, file=sys.stderr)

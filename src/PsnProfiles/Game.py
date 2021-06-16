@@ -8,13 +8,17 @@ from src.PsnProfilesObjectInterface import PsnProfilesObjectInterface
 
 class Game(PsnProfilesObjectInterface):
     def __init__(self, title: str, trophy_stats: dict, platform: str, rank: str, has_earned_platinum: bool,
-                 thumbnail_uri: str):
+                 thumbnail_uri: str, uri: str):
         self.title = title
         self.trophy_stats = trophy_stats
         self.platform = platform
         self.rank = rank
         self.has_earned_platinum = has_earned_platinum
         self.thumbnail_uri = thumbnail_uri
+        self.uri = uri
+
+    def populate_details_from_soup(self, soup: BeautifulSoup):
+        return ''
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -46,4 +50,5 @@ class Game(PsnProfilesObjectInterface):
             soup.select("span.game-rank")[0].text if soup.select("span.game-rank") else "",
             len(soup.select("span.platinum.earned")) > 0,
             soup.select("picture.game img")[0]["src"] if soup.select("picture.game img") else "",
+            "https://psnprofiles.com" + soup.find("a", class_="title")["href"] if soup.find("a", class_="title") else "",
         )

@@ -5,7 +5,7 @@ Python PSNProfiles scraper
 Scrape PSNProfiles profile pages using a Python CLI script
 
 .. |pypi| image:: https://img.shields.io/pypi/v/psnprofiles_scraper.svg
-   :target: https://pypi.org/project/progress/
+   :target: https://pypi.org/project/psnprofiles_scraper/
 
 .. |unit-tests| image:: https://github.com/robiningelbrecht/psnprofiles-scraper/actions/workflows/python-app.yml/badge.svg
    :target: https://github.com/robiningelbrecht/psnprofiles-scraper

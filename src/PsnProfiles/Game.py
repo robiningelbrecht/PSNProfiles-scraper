@@ -33,7 +33,7 @@ class Game(PsnProfilesObjectInterface):
     def populate_details_from_soup(self, soup: BeautifulSoup):
         self.cover_uri = soup.select("div.game-image-holder picture.game img")[0]["src"] if soup.select(
             "div.game-image-holder picture.game img") else ""
-        self.background_uri = re.findall('url\(([^)]+)\)', soup.select("div#banner div.img")[1]["style"])[
+        self.background_uri = re.findall(r'url\(([^)]+)\)', soup.select("div#banner div.img")[1]["style"])[
             0] if soup.select("div#banner div.img") else ""
         self.developers = soup.find("td", text=re.compile("Developer.*")).find_next().text.split(', ') if soup.find(
             "td", text=re.compile("Developer.*")) else ""

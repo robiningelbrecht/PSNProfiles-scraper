@@ -41,6 +41,7 @@ class PsnProfilesScraper:
                 game.populate_details_from_soup(BeautifulSoupFactory.create_from_link(game.uri))
                 self.__progress_bar.next()
 
+        # Fetch profile data.
         self.__progress_bar.update_message("Fetching profile")
         self.__soup_profile = BeautifulSoupFactory.create_for_profile(self.__psn_name)
         self.__progress_bar.next()
@@ -56,22 +57,28 @@ class PsnProfilesScraper:
             country = BeautifulSoupFactory.create_from_string(
                 self.__soup_profile.select("img#bar-country")[0]["title"]).text
 
+        # Extract profile summary.
         profile_summary = ProfileSummary.create_from_soup(
             BeautifulSoupFactory.create_from_string(str(self.__soup_profile) + str(self.__soup_stats)))
         self.__progress_bar.next()
 
+        # Extract recent trophies.
         recent_trophies = self.__get_recent_trophies()
         self.__progress_bar.next()
 
+        # Extract rarest trophies.
         rarest_trophies = self.__get_rarest_trophies()
         self.__progress_bar.next()
 
+        # Extract milestones.
         milestones = self.__get_milestones()
         self.__progress_bar.next()
 
+        # Extract trophy cabinet.
         trophy_cabinet = self.__get_trophy_cabinet()
         self.__progress_bar.next()
 
+        # Extract level history.
         level_history = self.__get_level_history()
         self.__progress_bar.next()
 

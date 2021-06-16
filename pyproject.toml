@@ -10,8 +10,13 @@ home-page = "https://github.com/robiningelbrecht/psnprofiles-scraper"
 classifiers = [ "License :: OSI Approved :: MIT License", "Environment :: Console", "Intended Audience :: Developers", "Programming Language :: Python :: 3.9"]
 description-file = "README.rst"
 requires-python = ">=3.9"
+requires = [
+  'beautifulsoup4 ~= 4.9.3',
+  'progress ~= 1.5',
+  'requests ~= 2.25',
+]
 
-[tool.flit.dependencies]
-beautifulsoup4 = "~=4.9.3"
-progress = "~=1.5"
-requests = "~=2.25"
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest >=6.2.4"
+]

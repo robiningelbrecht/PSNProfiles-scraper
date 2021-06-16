@@ -27,6 +27,14 @@ Or download from PyPi
 Usage
 ------
 
+.. code-block:: python
+
+    from psnprofiles_scraper.src.PsnProfilesScraper import PsnProfilesScraper
+
+
+    if __name__ == '__main__':
+        scraper = PsnProfilesScraper()
+        print(scraper.get_profile("YourUsername", False).to_json())
 
 Example JSON output
 -------------------

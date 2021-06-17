@@ -24,6 +24,12 @@ class Game(PsnProfilesObjectInterface):
         self.cover_uri = None
         self.background_uri = None
         self.trophies = []
+        self.trophy_count = {
+            "platinum": 0,
+            "gold": 0,
+            "silver": 0,
+            "bronze": 0
+        }
         self.developers = []
         self.publishers = []
         self.genres = []
@@ -54,10 +60,15 @@ class Game(PsnProfilesObjectInterface):
         # Append all trophy info to game.
         for table in soup.select("div.col-xs div.box.no-top-border table"):
             for row in table.find_all('tr'):
-                if len(row.find_all('td')) < 5:
+                if len(row.find_all('td')) < 6:
                     continue
 
-                self.trophies.append(Trophy.create_from_game_detail_soup(BeautifulSoupFactory.create_from_string(str(row))))
+                trophy = Trophy.create_from_game_detail_soup(BeautifulSoupFactory.create_from_string(str(row)))
+                self.trophies.append(trophy)
+
+                # Keep track of trophy count.
+                self.trophy_count[trophy.grade] += 1
+
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,

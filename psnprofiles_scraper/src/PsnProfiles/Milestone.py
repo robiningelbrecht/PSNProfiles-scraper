@@ -6,8 +6,9 @@ from psnprofiles_scraper.src.PsnProfiles.PsnProfilesObjectInterface import PsnPr
 
 
 class Milestone(PsnProfilesObjectInterface):
-    def __init__(self, trophy: str, game: str, description: str, date: str):
+    def __init__(self, trophy: str, trophy_icon: str, game: str, description: str, date: str):
         self.trophy = trophy
+        self.trophy_icon = trophy_icon
         self.game = game
         self.description = description
         self.date = date
@@ -19,6 +20,7 @@ class Milestone(PsnProfilesObjectInterface):
     def create_from_soup(soup: BeautifulSoup) -> Milestone:
         return Milestone(
             soup.find("a", class_="small-title").text if soup.find("a", class_="small-title") else "",
+            soup.select("picture.trophy img")[0]["src"] if soup.select("picture.trophy img") else "",
             soup.find("a", rel="nofollow").text if soup.find("a", rel="nofollow") else "",
             soup.select("span.typo-top-smaller.not-uppercase")[0].text if soup.select(
                 "span.typo-top-smaller.not-uppercase") else "",

@@ -103,8 +103,8 @@ class Game(PsnProfilesObjectInterface):
                     "span.icon-sprite.silver") else 0,
                 'bronze': to_int(soup.select("span.icon-sprite.bronze")[0].find_next().text) if soup.select(
                     "span.icon-sprite.bronze") else 0,
-                'completion': to_int(soup.select("div.progress-bar span")[0].text) if soup.select(
-                    "div.progress-bar span") else 0,
+                'completion': soup.select("div.progress-bar span")[0].text if soup.select(
+                    "div.progress-bar span") else None,
             },
             soup.select("span.tag.platform")[0].text if soup.select("span.tag.platform") else "",
             soup.select("span.game-rank")[0].text if soup.select("span.game-rank") else "",

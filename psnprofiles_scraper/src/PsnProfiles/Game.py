@@ -54,6 +54,20 @@ class Game(PsnProfilesObjectInterface):
         self.modes = soup.find("td", text=re.compile("Mode.*")).find_next().text.split(', ') if soup.find("td",
                                                                                                           text=re.compile(
                                                                                                               "Mode.*")) else ""
+
+        self.trophy_count["platinum"] = soup.select("div.col-xs-4 div.trophy-count li.icon-sprite.platinum")[
+            0].text if soup.select(
+            "div.col-xs-4 div.trophy-count li.icon-sprite.platinum") else ""
+        self.trophy_count["gold"] = soup.select("div.col-xs-4 div.trophy-count li.icon-sprite.gold")[
+            0].text if soup.select(
+            "div.col-xs-4 div.trophy-count li.icon-sprite.gold") else ""
+        self.trophy_count["silver"] = soup.select("div.col-xs-4 div.trophy-count li.icon-sprite.silver")[
+            0].text if soup.select(
+            "div.col-xs-4 div.trophy-count li.icon-sprite.silver") else ""
+        self.trophy_count["bronze"] = soup.select("div.col-xs-4 div.trophy-count li.icon-sprite.bronze")[
+            0].text if soup.select(
+            "div.col-xs-4 div.trophy-count li.icon-sprite.bronze") else ""
+
         if not soup.select("div.col-xs div.box.no-top-border table"):
             return
 
@@ -65,10 +79,6 @@ class Game(PsnProfilesObjectInterface):
 
                 trophy = Trophy.create_from_game_detail_soup(BeautifulSoupFactory.create_from_string(str(row)))
                 self.trophies.append(trophy)
-
-                # Keep track of trophy count.
-                self.trophy_count[trophy.grade] += 1
-
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,

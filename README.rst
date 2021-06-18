@@ -35,6 +35,7 @@ Usage
     from psnprofiles_scraper.src.PsnProfilesScraper import PsnProfilesScraper
 
     scraper = PsnProfilesScraper()
+    # 2nd param indicates if a detailed "scrape" should be executed, takes longer to finish.
     print(scraper.get_profile("YourUsername", False).to_json())
 
 Example JSON output

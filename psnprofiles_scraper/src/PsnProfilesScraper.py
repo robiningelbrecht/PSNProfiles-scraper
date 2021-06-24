@@ -85,6 +85,8 @@ class PsnProfilesScraper:
         profile = Profile(
             self.__psn_name,
             country,
+            self.__soup_profile.select("div.avatar img")[0]["src"] if self.__soup_profile.select(
+                "div.avatar img") else "",
             profile_summary,
             recent_trophies,
             rarest_trophies,

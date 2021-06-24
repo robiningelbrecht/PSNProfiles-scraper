@@ -46,6 +46,7 @@ Example JSON output
     {
       "name": "YourUserName",
       "country": "Belgium",
+      "avatar": "https://i.psnprofiles.com/avatars/m/Gc0466d545.png",
       "summary": {
         "level": 354,
         "trophies": {
@@ -110,60 +111,68 @@ Example JSON output
       "recent_trophies": [
         {
           "title": "Luna's Apprentice",
-          "game": "Concrete Genie",
+          "description": "Concrete Genie",
           "rarity_percentage": "90.93%",
           "rarity_label": "Common",
           "grade": "bronze",
-          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png",
+          "obtained": true
         },
         {
           "title": "Path of the Stars",
-          "game": "Shadow of the Tomb Raider",
+          "description": "Shadow of the Tomb Raider",
           "rarity_percentage": "94.29%",
           "rarity_label": "Common",
           "grade": "bronze",
-          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png",
+          "obtained": true
         }
       ],
       "rarest_trophies": [
         {
           "title": "Blue Series clear",
-          "game": "Trackmania Turbo",
+          "description": "Trackmania Turbo",
           "rarity_percentage": "3.28%",
           "rarity_label": "Ultra Rare",
           "grade": "silver",
-          "icon_uri": "https://i.psnprofiles.com/games/4d4c0b/trophies/17S023638.png"
+          "icon_uri": "https://i.psnprofiles.com/games/4d4c0b/trophies/17S023638.png",
+          "obtained": true
         },
         {
           "title": "Stadium Blue clear",
-          "game": "Trackmania Turbo",
+          "description": "Trackmania Turbo",
           "rarity_percentage": "3.45%",
           "rarity_label": "Ultra Rare",
           "grade": "bronze",
-          "icon_uri": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png"
+          "icon_uri": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png",
+          "obtained": true
         }
       ],
       "milestones": [
         {
           "trophy": "Dragon Break Classic master",
+          "trophy_icon": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png",
           "game": "Dragon Break Classic",
           "description": "Latest Platinum",
           "date": "6 days ago"
         },
         {
           "trophy": "Projectile Pro",
+          "trophy_icon": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png",
           "game": "Immortals Fenyx Rising",
           "description": "2,500th Trophy",
           "date": "4 weeks ago"
         },
         {
           "trophy": "Platinum Paw",
+          "trophy_icon": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png",
           "game": "Thunder Paw",
           "description": "50th Platinum",
           "date": "8 months ago"
         },
         {
           "trophy": "Thank you Mr. Kitty!",
+          "trophy_icon": "https://i.psnprofiles.com/games/4d4c0b/trophies/33Sd54d43.png",
           "game": "Red Bow",
           "description": "2,000th Trophy",
           "date": "8 months ago"
@@ -183,7 +192,8 @@ Example JSON output
           "platform": "PS4",
           "rank": "B",
           "has_earned_platinum": false,
-          "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png"
+          "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png",
+          "uri": "https://psnprofiles.com/trophies/3992-assassins-creed-syndicate/YourUsername"
         },
         {
           "title": "My Name is Mayo",
@@ -198,25 +208,28 @@ Example JSON output
           "platform": "PS4",
           "rank": "S",
           "has_earned_platinum": true,
-          "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png"
+          "thumbnail_uri": "https://i.psnprofiles.com/games/79c5a1/Sd24d1d.png",
+          "uri": "https://psnprofiles.com/trophies/5531-my-name-is-mayo/YourUsername"
          }
       ],
       "trophy_cabinet": [
         {
           "title": "Be Yourself",
-          "game": "Marvel's Spider-Man: Miles Morales",
+          "description": "Marvel's Spider-Man: Miles Morales",
           "rarity_percentage": "56.11%",
           "rarity_label": "Common",
           "grade": "platinum",
-          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png",
+          "obtained": true
         },
         {
           "title": "Viking Legend",
-          "game": "Assassin's Creed Valhalla",
+          "description": "Assassin's Creed Valhalla",
           "rarity_percentage": "15.91%",
           "rarity_label": "Rare",
           "grade": "platinum",
-          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png"
+          "icon_uri": "https://i.psnprofiles.com/games/e17609/trophies/2Se1a8c6.png",
+          "obtained": true
         }
       ],
       "level_history": [

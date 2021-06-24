@@ -9,11 +9,12 @@ from psnprofiles_scraper.src.PsnProfiles.Level import Level
 
 
 class Profile:
-    def __init__(self, name: str, country: str, summary: ProfileSummary, recent_trophies: List[Trophy],
+    def __init__(self, name: str, country: str, avatar: str, summary: ProfileSummary, recent_trophies: List[Trophy],
                  rarest_trophies: List[Trophy], milestones: List[Milestone], games: List[Game],
                  trophy_cabinet: List[Trophy], level_history: List[Level]):
         self.__name = name
         self.__country = country
+        self.__avatar = avatar
         self.__summary = summary
         self.__recent_trophies = recent_trophies
         self.__rarest_trophies = rarest_trophies
@@ -27,6 +28,9 @@ class Profile:
 
     def get_country(self) -> str:
         return self.__country
+
+    def get_avatar(self) -> str:
+        return self.__avatar
 
     def get_summary(self) -> ProfileSummary:
         return self.__summary
@@ -53,6 +57,7 @@ class Profile:
         return json.dumps({
             "name": self.get_name(),
             "country": self.get_country(),
+            "avatar": self.get_avatar(),
             "summary": self.get_summary(),
             "recent_trophies": self.get_recent_trophies(),
             "rarest_trophies": self.get_rarest_trophies(),

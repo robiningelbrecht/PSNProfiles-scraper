@@ -3,4 +3,4 @@
 # https://antonz.org/python-packaging/
 # flit publish
 
-__version__ = '1.3.1'
+__version__ = '1.3.2'
